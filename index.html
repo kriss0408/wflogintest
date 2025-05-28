@@ -16,7 +16,9 @@
             'wf-white': '#FFFFFF',
             'wf-red-hover': '#B01724',
             'wf-yellow': '#FCCC44',
-            'wf-grey': '#6A6E71'
+            'wf-grey': '#6A6E71',
+            'wf-purple': '#46348d',
+            'wf-purple-hover': '#5a45b5'
           }
         }
       }
@@ -117,10 +119,15 @@
           <p class="text-[#141414] mb-4 text-left" style="font-size: .88235294rem;"><strong>Good evening</strong><br>Sign on to manage your accounts.</p>
           <form id="login-form" class="space-y-4" onsubmit="handleLogin(event)">
             <div>
-              <input type="text" id="username" name="username" required class="w-full px-3 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-500 text-sm sm:text-base" placeholder="Enter your username or email" aria-label="Username or Email">
+              <input type="text" id="username" name="username" required class="w-full px-3 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-500 text-sm sm:text-base" placeholder="Username" aria-label="Username or Email">
             </div>
-            <div>
-              <input type="password" id="password" name="password" required class="w-full px-3 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-500 text-sm sm:text-base" placeholder="Enter your password" aria-label="Password">
+            <div class="relative">
+              <input type="password" id="password" name="password" required class="w-full px-3 py-2 border-b-2 border-gray-300 focus:outline-none focus:border-gray-500 text-sm sm:text-base" placeholder="Password" aria-label="Password">
+              <button type="button" id="toggle-password" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-wf-purple hover:text-wf-purple-hover text-xs sm:text-sm" aria-label="Toggle password visibility">Show</button>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="save-username" name="save-username" class="h-4 w-4 text-wf-red focus:ring-wf-red border-gray-300 rounded">
+              <label for="save-username" class="ml-2 text-xs sm:text-sm text-gray-700">Save Username</label>
             </div>
             <div class="flex items-center gap-3 sm:gap-4">
               <button type="submit" id="sign-on-button" class="bg-wf-red text-wf-white font-medium py-2 sm:py-2.5 px-4 sm:px-5 rounded-lg hover:bg-wf-red-hover transition text-sm sm:text-base">Sign On</button>
@@ -139,8 +146,8 @@
         </div>
         <!-- Banner Content -->
         <div class="flex-1 flex flex-col justify-center items-start min-h-[160px] sm:min-h-[180px] md:min-h-[200px]">
-          <h2 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-wf-white mb-3 sm:mb-4 text-left w-full ">$325 checking bonus on us</h2>
-          <p class="text-sm sm:text-base md:text-2xl text-wf-white mb-3 sm:mb-4 text-left ">New customers open an eligible checking account <br>with qualifying direct deposits</p>
+          <h2 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-wf-white mb-3 sm:mb-4 text-left w-full">$325 checking bonus on us</h2>
+          <p class="text-sm sm:text-base md:text-2xl text-wf-white mb-3 sm:mb-4 text-left">New customers open an eligible checking account <br>with qualifying direct deposits</p>
           <a href="#" target="_blank" rel="noopener noreferrer" class="inline-block bg-wf-white text-wf-red font-medium py-1.5 sm:py-2 px-3 sm:px-5 rounded-lg hover:bg-gray-100 transition text-xs sm:text-sm md:text-base">Learn More</a>
         </div>
       </div>
@@ -256,7 +263,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript for Mobile Menu Toggles and Form Handling -->
+  <!-- JavaScript for Mobile Menu Toggles, Form Handling, and Password Toggle -->
   <script>
     // Header Mobile Menu Toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -281,6 +288,15 @@
       secondaryNav.classList.toggle('hidden');
       secondaryNav.classList.toggle('flex');
       secondaryNav.classList.toggle('flex-col');
+    });
+
+    // Password Visibility Toggle
+    const togglePasswordButton = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+    togglePasswordButton.addEventListener('click', () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      togglePasswordButton.textContent = type === 'password' ? 'Show' : 'Hide';
     });
 
     // Form Submission Handling
